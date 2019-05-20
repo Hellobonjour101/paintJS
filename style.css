@@ -1,0 +1,53 @@
+@import "reset.css";
+body{
+    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 0px;
+    font-family: sans-serif;
+}
+.canvas{
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.controls{
+    margin-top: 50px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.controls_btn button{
+    all: unset;
+    cursor: pointer;
+    width: 80px;
+    padding: 10px 0px;
+    background-color: white;
+    text-align: center;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 500;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    text-transform: uppercase;
+    margin:10px;
+} 
+.controls_btn button:active{
+    transform: scale(.98);
+}
+.controls_colors{
+    display: flex;
+    margin-top: 10px;
+}
+.controls_color{
+    width:30px;
+    height:30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+.controls_color:hover{
+    transform: scale(1.1);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
