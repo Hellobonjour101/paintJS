@@ -9,3 +9,9 @@ Then I can save what I draw on my browser just like below. <br>
 
 ![paintJS EXPORT](https://user-images.githubusercontent.com/43777600/58087591-cbefaa00-7bfb-11e9-8d96-9bd7e72d2ceb.png)
 
+### What I learned from this project is..
+> Canvas
+> toDataURL()
+> Array.from()
+> mousemove
+> mousedown/up/leave
