@@ -8,7 +8,10 @@ var saveBtn = document.getElementById('jsSave');
 //default value setting
 ctx.strokeStyle = 'black'; 
 ctx.lineWidth = 2.5;
-ctx.fillStyle = 'white';
+
+//if I didn't set this default color, the backgroundColor will be transparent when I save the image
+ctx.fillStyle = "white";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 var painting = false;
 var filling = false;
@@ -16,7 +19,12 @@ var filling = false;
 
 function handleSaveClick(){
     var image = canvas.toDataURL();
+    //default값은 png인데, jpeg 으로 확장자는 바꿀 수 있음.
+    //var image = canvas.toDataURL('image/jpeg');
+    //console.log(image);
+
     var link = document.createElement('a');
+    //<a> 태그에 들어가는 herf와 download라는 attribute를 만듬.
     link.href = image;
     link.download = 'paintJS[EXPORT]';
     link.click();
@@ -24,8 +32,15 @@ function handleSaveClick(){
 function handleCanvasClick(){
     if(filling){ //**중요! 유효성 체크 (매번 놓치는 부분!)
         ctx.fillRect(0,0,canvas.width,canvas.height);
+
+         //handleColorClick을 통해서 클릭없이 자동으로 칠해지는 설정
+        //canvas.style.background = color;
     }  
 }
+function handleCM(event){
+    //when you right click, the drop down bar which is context menu will be opened.
+    event.preventDefault();
+  }
 function handleModeClick(){
     if(filling){
         filling = false;
@@ -58,14 +73,25 @@ function startPainting(){
 function onMouseMove(event){
     var x = event.offsetX;
     var y = event.offsetY;
+    //These properties provide the X and Y coordinates of the mouse pointer relative to the top-left corner of the document. (.clientX, .offsetX, and .pageX are available)
 
+    //if(boolean == false)은 if(!boolean)와 같다.
     if(!painting){
-        ctx.beginPath();
-        ctx.moveTo(x,y);
+        ctx.beginPath();//선그리기 선언
+        ctx.moveTo(x,y);//시작좌표 선언
     }else{
-        ctx.lineTo(x,y);
-        ctx.stroke();
+        ctx.lineTo(x,y);//끝나는 좌표 선언
+        ctx.stroke();//canvas위에 line 그리기
     }
+    //Begin a path, move to position 0,0. Create a line to position 300,150:
+    /*
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(300, 150);
+    ctx.stroke();
+    */
 }
 
 
@@ -80,10 +106,12 @@ if(canvas){
 
 //console.log(colors);
 //console.log(Array.from(colors));
+//Array.from은 object를 array로 만든다.
 Array.from(colors).forEach(function(a){
     a.addEventListener('click',handleColorClick);
 });
 
+//range라는 변수가 undefine인지 아닌지 check하는 방법이다.
 if(range){
     range.addEventListener('input',handleRangeChange);
 }
